@@ -10,11 +10,10 @@
 | password_confirmation | string  | null: false |
 | last_name             | string  | null: false |
 | first_name            | string  | null: false |
-| last_name_kana    | string  | null: false |
-| first_name_kana   | string  | null: false |
-| birth_year_id         | integer | null: false |
-| birth_month_id        | integer | null: false |
-| birth_day_id          | integer | null: false |
+| last_name_kana        | string  | null: false |
+| first_name_kana       | string  | null: false |
+| birth_day_id          | date    | null: false |
+
      
 
 ### Association 
@@ -33,23 +32,24 @@
 | postage_id       | integer    | null: false                    |
 | region_id        | integer    | null: false                    |
 | shipping_date_id | integer    | null: false                    |
-| user_id          | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - has_one :buyer
+- has_one :address
 
 
 ## buyers テーブル
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| user_id          | references | null: false, foreign_key: true |
-| item_id          | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :address
+
 
 
 
@@ -59,10 +59,10 @@
 | city             | string     | null: false                    |
 | block            | string     | null: false                    |
 | building         | string     |                                |
-| phone_number     | integer    | null: false                    |
+| phone_number     | string     | null: false                    |
 
 ### Association
-- belongs_to :buyer
+- belongs_to :item
 
 
 
