@@ -6,13 +6,18 @@ class User < ApplicationRecord
 
   
          with_options presence: true do
+
+          half_width_alphanumeric = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i #半角英数字どちらも
+          full_width_characters = /\A[ぁ-んァ-ン一-龥]/  #全角
+          full_width_kana = /\A[ァ-ヶー－]+\z/ #全角カナ
+          
           validates :nickname
-          validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: "Include both letters and numbers"} #半角英数字
+          validates :password, format: { with: half_width_alphanumeric , message: "Include both letters and numbers"} #半角英数字どちらも
           validates :password_confirmation
-          validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "Last name Full-width characters"} #全角
-          validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "Full-width characters"} #全角
-          validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "Full-width characters"} #全角カナ
-          validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: "Full-width characters"} #全角カナ
+          validates :last_name, format: { with: full_width_characters, message: "Last name Full-width characters"} #全角
+          validates :first_name, format: { with: full_width_characters, message: "Full-width characters"} #全角
+          validates :last_name_kana, format: { with: full_width_kana, message: "Full-width characters"} #全角カナ
+          validates :first_name_kana, format: { with: full_width_kana, message: "Full-width characters"} #全角カナ
           validates :birth_day
           
       
