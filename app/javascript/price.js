@@ -18,16 +18,8 @@ window.addEventListener('load', function(){
     }
     profit = Math.floor(price - fee)
     salesProfit.append(profit);
-
   })
-
 })
-
-
-
-
-
-
 
 
 
