@@ -10,14 +10,14 @@ class Item < ApplicationRecord
   belongs_to_active_hash :shipping_date 
 
   #空の投稿を保存できないようにする
-  validates :name, :image, :price, :category, :state, :postage, :region, :shipping_date, presence: true
+  validates :name, :description, :image, :price, :category, :state, :postage, :region, :shipping_date, presence: true
 
   #選択が「--」の時は保存できないようにする
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :state_id, numericality: { other_than: 1 } 
-  validates :postage_id, numericality: { other_than: 1 } 
-  validates :region_id, numericality: { other_than: 1 } 
-  validates :shipping_date_id, numericality: { other_than: 1 } 
+  validates :category_id, numericality: { other_than: 1, message: "Select"} 
+  validates :state_id, numericality: { other_than: 1, message: "Select" } 
+  validates :postage_id, numericality: { other_than: 1, message: "Select" } 
+  validates :region_id, numericality: { other_than: 1, message: "Select" } 
+  validates :shipping_date_id, numericality: { other_than: 1, message: "Select" } 
 
   validates :price, :numericality => { :greater_than_or_equal_to => 300, message: "Out of setting range" } 
   validates :price, :numericality => { :less_than_or_equal_to => 9999999, message: "Out of setting range" } 
