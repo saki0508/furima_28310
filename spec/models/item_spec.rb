@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  describe 'ユーザー情報の保存' do
+  describe '商品情報の保存' do
     before do
       @item = FactoryBot.build(:item)
       @item.image = fixture_file_upload('public/cns0011-039.jpg')
@@ -25,29 +25,29 @@ RSpec.describe Item, type: :model do
     it 'カテゴリー情報が選択されていないと保存されないこと' do
       @item.category_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Category must be other than 1")
+      expect(@item.errors.full_messages).to include("Category Select")
 
     end
     it '商品の状態についての情報が選択されていないと保存されないこと' do
       @item.state_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("State must be other than 1")
+      expect(@item.errors.full_messages).to include("State Select")
     end
     
     it '配送料の負担についての情報が選択されていないと保存されないこと' do
       @item.postage_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Postage must be other than 1")
+      expect(@item.errors.full_messages).to include("Postage Select")
     end
     it '発送元の地域についての情報が選択されていないと保存されないこと' do
       @item.region_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Region must be other than 1")
+      expect(@item.errors.full_messages).to include("Region Select")
     end
     it '発送までの日数についての情報が選択されていないと保存されないこと' do
       @item.shipping_date_id = 1
       @item.valid?
-      expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
+      expect(@item.errors.full_messages).to include("Shipping date Select")
     end
     it '価格が空だと保存されないこと' do
       @item.price = nil
@@ -63,6 +63,11 @@ RSpec.describe Item, type: :model do
       @item.price = 10000000
       @item.valid?
       expect(@item.errors.full_messages).to include("Price Out of setting range")
+    end
+    it '商品画像が空だと保存できないこと' do
+      @item.image = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include("Image can't be blank")
     end
   end
 end

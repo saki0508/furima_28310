@@ -1,13 +1,13 @@
 FactoryBot.define do
   factory :item do
-    name {Faker::Lorem.word}
-    description {Faker::Lorem.sentences}
-    price {Faker::Number.number(digits: 4)}
-    category_id {Faker::Number.within(range: 2..11)}
-    state_id {Faker::Number.within(range: 2..7)}
-    postage_id {Faker::Number.within(range: 2..3)}
-    region_id {Faker::Number.within(range: 2..48)}
-    shipping_date_id {Faker::Number.within(range: 2..4)}
+    name {'時計'}
+    description {'丈夫な時計です'}
+    price {500}
+    category_id {3}
+    state_id {3}
+    postage_id {3}
+    region_id {3}
+    shipping_date_id {3}
     association :user
   end
 end
