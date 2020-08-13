@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe Address, type: :model do
+RSpec.describe BuyerAddress, type: :model do
   describe '配送先住所の保存' do
     before do
-      @address = FactoryBot.build(:address)
+      @address = FactoryBot.build(:buyer_address)
     end
 
     it '全ての値が正しく入力されていれば保存できること' do
@@ -57,6 +57,5 @@ RSpec.describe Address, type: :model do
       @address.valid?
       expect(@address.errors.full_messages).to include("Phone number is invalid")
     end
-
   end
 end
