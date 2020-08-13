@@ -1,6 +1,7 @@
 class TransactionsController < ApplicationController
   before_action :authenticate_user!
   before_action :seller_redirect
+  before_action :sold_out_redirect
 
 
   def index
@@ -28,6 +29,10 @@ class TransactionsController < ApplicationController
   def seller_redirect
     @item = Item.find(params[:item_id])
     redirect_to root_path  if current_user.id == @item.user_id
+  end
+
+  def sold_out_redirect
+    redirect_to root_path if Address.exists?(item:@item)
   end
 
   
