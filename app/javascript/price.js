@@ -9,7 +9,7 @@ window.addEventListener('load', function(){
     if ( salesFee.textContent != ""){
     salesFee.textContent = null
     }
-    
+
     fee = Math.floor(price * 0.1)
     salesFee.append(fee);
 
@@ -20,9 +20,3 @@ window.addEventListener('load', function(){
     salesProfit.append(profit);
   })
 })
-
-
-
-
-
-
